@@ -6,21 +6,23 @@ import mutation from '../mutations/Logout';
 
 class Header extends Component {
   onLogoutClick() {
-    this.props.mutate({});
+    this.props.mutate({
+      refetchQueries: [{ query }]
+    });
   }
 
   renderButtons() {
     const { loading, user } = this.props.data;
 
     if (loading) {
-      return <div />;
+      return <div>Loading</div>;
     }
 
     if (user) {
       return (
         <div>
           <li>
-            <a onClick={this.onLogoutClick.bind(this)}></a>
+            <a onClick={this.onLogoutClick.bind(this)}>Logout</a>
           </li>
         </div>
       );
